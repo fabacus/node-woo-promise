@@ -1,0 +1,32 @@
+{
+  "name": "woo-promise",
+  "version": "0.1.0",
+  "description": "A promise wrapper for the woocommerce api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabacus/node-woopromise.git"
+  },
+  "keywords": [
+    "woocommerce",
+    "promise",
+    "api",
+    "ecommerce",
+    "payment",
+    "order",
+    "customers"
+  ],
+  "author": "Patrick McKinley <patrick.mckinley@fabacus.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabacus/node-woopromise/issues"
+  },
+  "homepage": "https://github.com/fabacus/node-woopromise#readme",
+  "dependencies": {
+    "woocommerce-api": "^1.1.1",
+    "sprintf-js": "^1.0.3"
+  }
+}

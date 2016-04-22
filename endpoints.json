@@ -1,0 +1,87 @@
+{
+  "info" : "/",
+  "coupons" : {
+    "index" : "/coupons",
+    "info"  : "/coupons/%s",
+    "count" : "/coupons/count",
+    "code"  : "/coupons/code/%s",
+    "bulk"  : "/coupons/bulk"
+  },
+  "customers" : {
+    "index"     : "/customers",
+    "info"      : "/customers/%s",
+    "count"     : "/customers/count",
+    "email"     : "/customers/email/%s",
+    "orders"    : "/customers/%s/orders",
+    "downloads" : "/customers/%s/downloads",
+    "bulk"      : "/customers/bulk"
+  },
+  "orders" : {
+    "index"    : "/orders",
+    "count"    : "/orders/count",
+    "statuses" : "/orders/statuses",
+    "info"     : "/orders/%s",
+    "notes"    : {
+      "index" : "/orders/%s/notes",
+      "info"  : "/orders/%s/notes/%s"
+    },
+    "refunds" : {
+      "index" : "/orders/%s/refunds",
+      "info"  : "/orders/%s/refunds/%s"
+    },
+    "bulk" : "/orders/bulk"
+  },
+  "products" : {
+    "index"      : "/products",
+    "count"      : "/products/count",
+    "info"       : "/products/%s",
+    "reviews"    : "/products/%s/reviews",
+    "orders"     : "/products/%s/orders",
+    "categories" : {
+      "index" : "/products/categories",
+      "info"  : "/products/categories/%s"
+    },
+    "tags" : {
+      "index" : "/products/tags",
+      "info"  : "/products/tags/%s"
+    },
+    "shipping" : {
+      "index" : "/products/shipping_classes",
+      "info"  : "/products/shipping_classes/%s"
+    },
+    "attributes" : {
+      "index" : "/products/attributes",
+      "info"  : "/products/attributes/%s",
+      "terms" : {
+        "index" : "/products/attributes/%s/terms",
+        "info"  : "/products/attributes/%s/terms/%s"
+      }
+    },
+    "bulk" : "/products/bulk"
+  },
+  "reports" : {
+    "index"       : "/reports",
+    "sales"       : "/reports/sales",
+    "topsellers"  : "/reports/sales/top_sellers"
+  },
+  "taxes" : {
+    "index" : "/taxes",
+    "count" : "/taxes/count",
+    "info"  : "/taxes/%s",
+    "classes" : {
+      "index" : "/taxes/classes",
+      "count" : "/taxes/classes/count",
+      "slug"  : "/taxes/classes/%s"
+    },
+    "bulk" : "/taxes/bulk"
+  },
+  "webhooks" : {
+    "index" : "/webhooks",
+    "count" : "/webhooks/count",
+    "info"  : "/webhooks/%s",
+    "deliveries" : {
+      "index" : "/webhooks/%s/deliveries",
+      "info"  : "/webhooks/%s/deliveries/%s"
+    }
+  }
+}
