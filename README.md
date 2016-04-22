@@ -12,9 +12,11 @@ npm install --save woo-promise
 
 ## Getting Started
 Generate API credentials (Consumer Key & Consumer Secret) following this instructions <http://docs.woothemes.com/document/woocommerce-rest-api/>.
+
 Get familiar with the endpoints for WooCommerce - so you know what to work with in <http://woothemes.github.io/woocommerce-rest-api-docs/>.
 
 Once the object is instantiated, you need to call `init()`. This will dynamically build the functions for woocommerce, categorising them by group.
+
 There is also the same `get()`, `post()`, `put()`, and `delete()` from the base library - only promisified to remove the callback options ([info](https://github.com/woothemes/wc-api-node/))
 
 ## Setup
