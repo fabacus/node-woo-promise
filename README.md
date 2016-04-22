@@ -2,8 +2,8 @@
 
 This is a node.js promisification wrapper for [WooCommerce API](https://github.com/woothemes/wc-api-node/). Easily interact with the WooCommerce REST API, without worrying about the URLs to use or URL formatting.
 
-[![dependency status](https://david-dm.org/woothemes/wc-api-node.svg)](https://david-dm.org/woothemes/wc-api-node)
-[![npm version](https://img.shields.io/npm/v/woocommerce-api.svg)](https://www.npmjs.com/package/woo-promise)
+[![dependency status](https://david-dm.org/fabacus/node-woo-promise.svg)](https://david-dm.org/fabacus/node-woo-promise)
+[![npm version](https://img.shields.io/npm/v/woo-promise.svg)](https://www.npmjs.com/package/woo-promise)
 
 ## Installation
 ```
@@ -96,3 +96,6 @@ This is where the gravy arrives.
   - `client.coupons.postBulk()`
 
     Create/Update Multiple Coupons. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-update-multiple-coupons)
+
+# TODO
+ - Finish writing the documentation :)
