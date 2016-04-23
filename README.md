@@ -77,10 +77,10 @@ This is where the gravy arrives.
     Returns the base API information for the WooCommerce site. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-index-list)
 
 ### Coupons
-  - `client.getCoupons()`
+  - `client.coupons.get()`
 
     Returns the list of coupons in the system. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-list-of-coupons)
-  - `client.postCoupons(data)`
+  - `client.coupons.post(data)`
 
     Create coupons. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-a-coupon)
   - `client.coupons.get(id)`
@@ -95,9 +95,49 @@ This is where the gravy arrives.
   - `client.coupons.count()`
 
     Count the number of coupons. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-coupons-count)
-  - `client.coupons.postBulk()`
+  - `client.coupons.bulk.post(data)`
 
     Create/Update Multiple Coupons. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-update-multiple-coupons)
+
+### Customers
+  - `client.customers.get()`
+
+    List all customers. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-list-of-customers)
+  - `client.customers.post(data)`
+
+    Create a customer. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-a-customer)
+  - `client.customers.get(id)`
+  - `client.customers.email.get(email)`
+
+    Get specific customer information. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-a-customer)
+  - `client.customers.put(id, data)`
+
+    Update a customer. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#update-a-customer)
+  - `client.customers.bulk.post(data)`
+
+    Create/Update multiple customers. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-update-multiple-customers)
+  - `client.customers.del(id)`
+
+    Delete a customer. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#delete-a-customer)
+  - `client.customers.orders.get(id)`
+
+    List orders for a customer. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-customer-orders)
+  - `client.customers.downloads.get(id)`
+
+    List downloads for a customer. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-customer-downloads)
+  - `client.customers.count()`
+
+    Count the number of customers. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-customers-count)
+
+### Orders
+
+### Products
+
+### Reports
+
+### Taxes
+
+### Webhooks
 
 # TODO
  - Finish writing the documentation :)

@@ -4,22 +4,24 @@
     "index" : "/coupons",
     "info"  : "/coupons/%s",
     "count" : "/coupons/count",
-    "code"  : "/coupons/code/%s",
-    "bulk"  : "/coupons/bulk"
+    "code"  : {
+      "info": "/coupons/code/%s"
+    },
+    "bulk"  : {"info": "/coupons/bulk"}
   },
   "customers" : {
     "index"     : "/customers",
     "info"      : "/customers/%s",
     "count"     : "/customers/count",
-    "email"     : "/customers/email/%s",
-    "orders"    : "/customers/%s/orders",
-    "downloads" : "/customers/%s/downloads",
-    "bulk"      : "/customers/bulk"
+    "email"     : {"info": "/customers/email/%s"},
+    "orders"    : {"info": "/customers/%s/orders"},
+    "downloads" : {"info": "/customers/%s/downloads"},
+    "bulk"      : {"info": "/customers/bulk"}
   },
   "orders" : {
     "index"    : "/orders",
     "count"    : "/orders/count",
-    "statuses" : "/orders/statuses",
+    "statuses" : {"info": "/orders/statuses"},
     "info"     : "/orders/%s",
     "notes"    : {
       "index" : "/orders/%s/notes",
@@ -29,14 +31,14 @@
       "index" : "/orders/%s/refunds",
       "info"  : "/orders/%s/refunds/%s"
     },
-    "bulk" : "/orders/bulk"
+    "bulk" : {"info": "/orders/bulk"}
   },
   "products" : {
     "index"      : "/products",
     "count"      : "/products/count",
     "info"       : "/products/%s",
-    "reviews"    : "/products/%s/reviews",
-    "orders"     : "/products/%s/orders",
+    "reviews"    : {"info": "/products/%s/reviews"},
+    "orders"     : {"info": "/products/%s/orders"},
     "categories" : {
       "index" : "/products/categories",
       "info"  : "/products/categories/%s"
@@ -57,12 +59,12 @@
         "info"  : "/products/attributes/%s/terms/%s"
       }
     },
-    "bulk" : "/products/bulk"
+    "bulk" : {"info": "/products/bulk"}
   },
   "reports" : {
     "index"       : "/reports",
-    "sales"       : "/reports/sales",
-    "topsellers"  : "/reports/sales/top_sellers"
+    "sales"       : {"info": "/reports/sales"},
+    "topsellers"  : {"info": "/reports/sales/top_sellers"}
   },
   "taxes" : {
     "index" : "/taxes",
@@ -71,9 +73,9 @@
     "classes" : {
       "index" : "/taxes/classes",
       "count" : "/taxes/classes/count",
-      "slug"  : "/taxes/classes/%s"
+      "slug"  : {"info": "/taxes/classes/%s"}
     },
-    "bulk" : "/taxes/bulk"
+    "bulk" : {"info": "/taxes/bulk"}
   },
   "webhooks" : {
     "index" : "/webhooks",

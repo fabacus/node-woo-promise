@@ -83,47 +83,57 @@ class WooPromise extends EventEmitter {
     return url;
   }
 
-  _getAbstract(urlArgs, url){
+  _getAbstract(urlArgs, url, noArgsUrl){
     return function() {
       let arrayArgs = Array.prototype.slice.call(arguments);
       let args = typeof arguments[0] == 'object' ? arguments[0] : {};
+      if (noArgsUrl && arrayArgs.length == 0) {
+        return this.get(noArgsUrl);
+      }
       let parsedUrl = this._buildUrl(url, urlArgs, args, arrayArgs);
       return this.get(parsedUrl);
     }.bind(this);
   }
 
-  _postAbstract(urlArgs, url){
+  _postAbstract(urlArgs, url, noArgsUrl){
     return function() {
       let arrayArgs = Array.prototype.slice.call(arguments);
       //assume the last argument is the data
       let data = arrayArgs.pop();
       let args = typeof arrayArgs[0] == 'object' ? arguments[0] : {};
+      if (noArgsUrl && arrayArgs.length == 0) {
+        return this.post(noArgsUrl, data);
+      }
       let parsedUrl = this._buildUrl(url, urlArgs, args, arrayArgs);
       return this.post(parsedUrl, data);
     }.bind(this);
   }
 
-  _putAbstract(urlArgs, url){
+  _putAbstract(urlArgs, url, noArgsUrl){
     return function() {
       let arrayArgs = Array.prototype.slice.call(arguments);
       //assume the last argument is the data
       let data = arrayArgs.pop();
       let args = typeof arrayArgs[0] == 'object' ? arguments[0] : {};
+      if (noArgsUrl && arrayArgs.length == 0) {
+        return this.put(noArgsUrl, data);
+      }
       let parsedUrl = this._buildUrl(url, urlArgs, args, arrayArgs);
       return this.put(parsedUrl, data);
     }.bind(this);
   }
 
-  _deleteAbstract(){
+  _deleteAbstract(urlArgs, url, noArgsUrl){
     return function() {
       let arrayArgs = Array.prototype.slice.call(arguments);
       let args = typeof arguments[0] == 'object' ? arguments[0] : {};
+      if (noArgsUrl && arrayArgs.length == 0) {
+        return this.delete(noArgsUrl);
+      }
       let parsedUrl = this._buildUrl(url, urlArgs, args, arrayArgs);
       return this.delete(parsedUrl);
     }.bind(this);
   }
-
-
 
   init() {
     try{
@@ -137,9 +147,35 @@ class WooPromise extends EventEmitter {
           data = data.store;
         }
         this._wooRoutes = data.routes;
+        this._wooToSprintf = {}
+        this._buildRouteMap(this.urls)
         this._buildMethods(this.urls, this);
         return this
       })
+  }
+
+  _buildRouteMap(urls) {
+    for (let code of Object.keys(urls)) {
+      let url = urls[code];
+      if (typeof url != 'string') {
+        this._buildRouteMap(url);
+        continue;
+      }
+      let pattern = sprintf(url, '<([a-z_]+)>', '<([a-z_]+)>', '<([a-z_]+)>', '<([a-z_]+)>');
+      let regex = new RegExp('^' + pattern + '$', 'i');
+      let urlInfo = false;
+      for( let wooPath of Object.keys(this._wooRoutes)) {
+        let match = wooPath.match(regex);
+        if(!match) continue;
+        this._wooToSprintf[url] = {
+          wooPath: wooPath,
+          urlInfo: {
+            match: match,
+            wooInfo: this._wooRoutes[wooPath]
+          }
+        }
+      }
+    }
   }
 
   _buildMethods(urls, baseObj, containerCode) {
@@ -150,32 +186,24 @@ class WooPromise extends EventEmitter {
       if (typeof url != 'string') {
         let childObj = this._buildMethods(url, {});
         baseObj[code] =  childObj;
-        if(url.index) {
-          url = url.index
-        }
-      }
-
-      //BUild a regex of the URL
-      let pattern = sprintf(url, '<([a-z_]+)>', '<([a-z_]+)>', '<([a-z_]+)>', '<([a-z_]+)>');
-      let regex = new RegExp('^' + pattern + '$', 'i');
-      let urlInfo = false;
-      for( let wooPath of Object.keys(this._wooRoutes)) {
-        let match = wooPath.match(regex);
-        if(!match) continue;
-        urlInfo = {
-          match: match,
-          wooInfo: this._wooRoutes[wooPath]
-        }
+        continue;
       }
 
       //no route match with the woo incoming
-      if(!urlInfo) continue;
-      let functionName = code == 'info' ? '' : this._formatName(code);
+      if(!this._wooToSprintf[url]) continue;
+      let urlInfo = this._wooToSprintf[url].urlInfo;
+      let wooPath = this._wooToSprintf[url].wooPath;
+
+      let functionName = code == 'info' && !Object.is(this, baseObj) ? '' : this._formatName(code);
       for(let method of urlInfo.wooInfo.supports) {
         if(this.apiVerbs[method]) {
           let apiMethod = this.apiVerbs[method];
           let fnctName = code == 'count' ? code : sprintf(apiMethod.name, functionName);
-          baseObj[fnctName] = apiMethod.method(urlInfo.match, url);
+          if(code == 'info' && urls.index && this._wooToSprintf[urls.index].urlInfo.wooInfo.supports.indexOf(method) >= 0) {
+            baseObj[fnctName] = apiMethod.method(urlInfo.match, url, urls.index);
+          } else {
+            baseObj[fnctName] = apiMethod.method(urlInfo.match, url);
+          }
         }
       }
     }
