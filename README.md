@@ -130,12 +130,82 @@ This is where the gravy arrives.
     Count the number of customers. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-customers-count)
 
 ### Orders
+  - `client.orders.post(data)`
+
+    Create order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-an-order)
+  - `client.orders.get(id)`
+
+    View an order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-an-order)
+  - `client.orders.get()`
+
+    Get list of orders. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-list-of-orders)
+  - `client.orders.put(id, data)`
+
+    Update an order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#update-an-order)
+  - `client.orders.bulk.post(data)`
+
+    Create/Update multiple orders. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-update-multiple-orders)
+  - `client.orders.del(id)`
+
+    Delete an order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#delete-an-order)
+  - `client.orders.count()`
+
+    The order count. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-orders-count)
+  - `client.orders.statuses.get()`
+
+    Get all order statuses. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-list-of-order-statuses)
+
+### Order Notes
+  - `client.orders.notes.post(order_id, data)`
+
+  Create a note on order `id`. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-a-note-for-an-order)
+  - `client.orders.notes.get(order_id, note_id)`
+
+  View order note. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-an-order-note)
+  - `client.orders.notes.get(order_id)`
+
+  View all notes on an order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-list-of-notes-from-an-order)
+  - `client.orders.notes.put(order_id, note_id, data)`
+
+  Update a note. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#update-an-order-note)
+  - `client.orders.notes.del(order_id, note_id)`
+
+  Delete a note. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#delete-an-order-note)
+
+### Order Refunds
+  - `client.orders.refunds.post(order_id)`
+
+  Create a refund for an order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#create-a-refund-for-an-order)
+  - `client.orders.refunds.get(order_id, refund_id)`
+
+  View a refund for a given order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-an-order-refund)
+  - `client.orders.refunds.get(order_id)`
+
+  View all refunds on an order. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#view-list-of-refunds-from-an-order)
+  - `client.orders.refunds.put(order_id, refund_id, data)`
+
+  Update a given refund. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#update-an-order-refund)
+  - `client.orders.refunds.del(order_id, refund_id)`
+
+  Delete a refund. [WooCommerce Docs](http://woothemes.github.io/woocommerce-rest-api-docs/#delete-an-order-refund)
 
 ### Products
+
+### Product Attributes
+
+### Product Attribute Terms
+
+### Product Categories
+
+### Product Shipping Classes
+
+### Product Tags
 
 ### Reports
 
 ### Taxes
+
+### Tax Classes
 
 ### Webhooks
 
