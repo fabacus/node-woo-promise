@@ -63,6 +63,7 @@
   },
   "reports" : {
     "index"       : "/reports",
+    "info"        : "/reports",
     "sales"       : {"info": "/reports/sales"},
     "topsellers"  : {"info": "/reports/sales/top_sellers"}
   },
