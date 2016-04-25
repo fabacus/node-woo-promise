@@ -1,6 +1,6 @@
 {
   "name": "woo-promise",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A promise wrapper for the woocommerce api",
   "main": "index.js",
   "scripts": {
