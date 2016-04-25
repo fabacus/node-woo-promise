@@ -29,7 +29,7 @@ var woopromise = new WooPromise({
   consumerSecret: 'cs_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 });
 
-woopromise.init()
+woopromise.init() //this loads the library and tests the connection to WooCommerce
   .then(client => {
     //do things.
   })
@@ -70,6 +70,11 @@ Performs a `DELETE` against the specified endpoint on the WooCommerce instance.
 
 ## Magic Methods
 This is where the gravy arrives.
+
+**NOTE:** If you require filters on any of the endpoints, you need to specify all arguments as a string. eg:
+```javascript
+  client.orders.get({filter:{status:'processing'}})
+```
 
 ### Global
   - `client.getInfo()`

@@ -14,6 +14,7 @@ const EventEmitter = require('events').EventEmitter;
 const sprintf = require('sprintf-js').sprintf;
 const vsprintf = require('sprintf-js').vsprintf;
 const endpoints = require('./endpoints');
+const Perry = require('perry');
 
 class WooError extends Error {
   constructor(code, message) {
@@ -79,6 +80,10 @@ class WooPromise extends EventEmitter {
         sprintfArgs.push(args[key]);
       }
       url = vsprintf(url, sprintfArgs);
+      if(args.filter) {
+        let filter = Perry.stringify({filter:args.filter})
+        url = url + '?'+filter;
+      }
     }
     return url;
   }
