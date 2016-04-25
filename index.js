@@ -224,7 +224,6 @@ class WooPromise extends EventEmitter {
 
   get(path) {
     return new Promise((resolve, reject) => {
-      console.log(path);
       path = path.replace(/^\/|\/$/g, '');
       this.api.get(path, (err, res, body) => {
         if (err) {
