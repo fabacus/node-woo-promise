@@ -68,6 +68,7 @@ class WooPromise extends EventEmitter {
   _buildUrl(url, urlArgs, args, arrayArgs) {
     if (urlArgs.length > 1) {
       let sprintfArgs = [];
+
       //validate the args and push in the right order to sprintf
       for (let k = 1; k < urlArgs.length; k++) {
         let key = urlArgs[k];
@@ -88,12 +89,13 @@ class WooPromise extends EventEmitter {
     return url;
   }
 
-  _getAbstract(urlArgs, url, noArgsUrl){
+  _getAbstract(urlArgs, url, noArgsUrl, noArgsUrlArgs){
     return function() {
       let arrayArgs = Array.prototype.slice.call(arguments);
       let args = typeof arguments[0] == 'object' ? arguments[0] : {};
-      if (noArgsUrl && arrayArgs.length == 0) {
-        return this.get(noArgsUrl);
+      if (noArgsUrl && arrayArgs.length < urlArgs.length) {
+        let parsedUrl = this._buildUrl(noArgsUrl, noArgsUrlArgs, args, arrayArgs);
+        return this.get(parsedUrl);
       }
       let parsedUrl = this._buildUrl(url, urlArgs, args, arrayArgs);
       return this.get(parsedUrl);
@@ -205,7 +207,7 @@ class WooPromise extends EventEmitter {
           let apiMethod = this.apiVerbs[method];
           let fnctName = code == 'count' ? code : sprintf(apiMethod.name, functionName);
           if(code == 'info' && urls.index && this._wooToSprintf[urls.index].urlInfo.wooInfo.supports.indexOf(method) >= 0) {
-            baseObj[fnctName] = apiMethod.method(urlInfo.match, url, urls.index);
+            baseObj[fnctName] = apiMethod.method(urlInfo.match, url, urls.index, this._wooToSprintf[urls.index].urlInfo.match);
           } else {
             baseObj[fnctName] = apiMethod.method(urlInfo.match, url);
           }
@@ -222,6 +224,7 @@ class WooPromise extends EventEmitter {
 
   get(path) {
     return new Promise((resolve, reject) => {
+      console.log(path);
       path = path.replace(/^\/|\/$/g, '');
       this.api.get(path, (err, res, body) => {
         if (err) {
