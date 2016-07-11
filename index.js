@@ -85,7 +85,11 @@ class WooPromise extends EventEmitter {
         let filter = Perry.stringify({filter:args.filter})
         url = url + '?'+filter;
       }
+    } else if(args) {
+      let filter = Perry.stringify(args);
+      url = url + '?'+filter;
     }
+    console.log(url);
     return url;
   }
 
@@ -222,7 +226,7 @@ class WooPromise extends EventEmitter {
     return name.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})
   }
 
-  get(path) {
+  get(path, filter) {
     return new Promise((resolve, reject) => {
       path = path.replace(/^\/|\/$/g, '');
       this.api.get(path, (err, res, body) => {
